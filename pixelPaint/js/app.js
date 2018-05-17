@@ -171,6 +171,6 @@ function clearCursor() {
     document.querySelectorAll(".pixel").forEach(  p =>  { p.classList.remove("selected"); });
 }
 
-createCanvas(18,7);
+createCanvas(70,30);
 createPalette();
 createTools();
