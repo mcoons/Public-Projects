@@ -1,0 +1,156 @@
+.pixel {
+    background-color: white;
+    width: .7vw;
+    height: .7vw;
+} 
+
+.outlined {
+    outline: 1px solid lightgray;
+    outline-offset: -1px;
+}
+
+.row {
+    display:flex;
+    justify-content: center;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#header {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#myCanvas {
+    margin: 1vw;
+    border: 1px solid black;
+}
+
+#headerText {
+    padding: 5px 15px 5px 15px;
+    display: block;
+    font-size: 30px;
+    background: linear-gradient(lightskyblue, gray);
+    border-radius: 20px;
+    border: 2px solid white;
+    box-shadow: 3px 3px 10px rgb(70,70,70);
+}
+
+#paintArea {
+    border: 1vw solid;
+    border-image: radial-gradient(black 10%, white) 20;
+    box-shadow: 3px 3px 10px rgb(45, 91, 122);
+    margin-right: 1vw;
+}
+
+#main {
+    display:flex;
+    align-items: center;
+    padding: 1vw;
+    margin: auto;
+    background: linear-gradient(gray, lightskyblue);
+    border-radius: 20px;
+    border: 1px solid black;
+}
+
+#paletteDiv {
+    display: flex;
+    flex-direction: column;
+    width: 16.8vw;
+    padding: .5vw;
+    border: .3vw solid black;
+    box-shadow: 3px 3px 10px rgb(45, 91, 122), 3px 3px 10px rgb(45, 91, 122) inset;
+}
+
+.eraser {
+    width: 3.5vw;
+    height: 3.5vw;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin: .2vw;
+    box-shadow: 3px 3px 10px rgb(45, 91, 122);
+    padding: 2px;
+}
+
+#paletteHolder {
+    display:flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding:0;
+}
+
+.colorDiv {
+    width: 1.5vw;
+    height: 1.5vw;
+    border: .1vw solid black;
+    border-radius: 4px;
+    margin: .2vw;
+    box-shadow: 3px 3px 10px rgb(45, 91, 122);
+}    
+
+.colorDiv:hover {
+    box-shadow: 2px 2px 2px yellow, -2px -2px 2px yellow, 2px -2px 2px yellow, -2px 2px 2px yellow;
+}
+
+#toolboxDiv {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+#brushHolder {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+#buttonHolder {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+#bgButton {
+    background: gray;
+    box-shadow: 3px 3px 10px rgb(45, 91, 122);
+    margin: .5vw 0 .5vw 0;
+    padding: .3vw;
+}
+
+#bgButton:hover {
+    background: lightgray;
+}
+
+.button {
+    background: gray;
+    box-shadow: 3px 3px 10px rgb(45, 91, 122);
+    flex: 1 1 0;
+    margin: .5vw 0 .5vw 0;
+    padding: .3vw;
+}
+
+.button:hover {
+    background: lightgray;
+}
+
+#BrushButton1, #unDoButton {
+    margin: .5vw .5vw .5vw .5vw;
+}
+
+.painted {
+    outline: none;
+}
+
+.selected {
+    z-index: 2;
+    outline: 2px solid red;
+    outline-offset: -1px;
+}
+
+.eraseBorder {
+    border: .3vw dotted lightgray !important;
+}
