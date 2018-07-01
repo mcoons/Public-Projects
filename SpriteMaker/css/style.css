@@ -1,7 +1,7 @@
 .pixel {
     background-color: rgba(255,255,255,1);
-    width: .75vw;
-    height: .75vw;
+    /* width: .70vw; */
+    /* height: .70vw; */
     /* height: 6px; */
     /* width: 6px; */
 } 
@@ -44,6 +44,7 @@ body {
     border: 2px solid white;
     box-shadow: 3px 3px 10px rgb(70,70,70);
     margin-bottom: .5vw;
+    text-align: center;
 }
 
 #paintArea {

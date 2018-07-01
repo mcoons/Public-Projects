@@ -3,12 +3,19 @@ var currentColor = "rgb(0,0,0)";
 var backgroundColor = "rgb(255,255,255)";
 var painting = false;
 var erasing = false;
-var currentBrush = 0;
-var undoArray = [];
-var scale = 1;
-var alphaBackground = 1;
-var width = 70;
-var height = 70;
+var currentBrush = 0;           // brush 0 - 2
+var undoArray = [];             // Array to hold undo Object groups
+var scale = 1;                  // Output scale
+var alphaBackground = 1;        // Aplha setting of the background
+// var width = 70;                 // number of pixels on the canvas
+// var height = 70;                // number of pixels on the canvas
+// var pixelSize = .70;            // vh
+// var width = 140;                 // number of pixels on the canvas
+// var height = 140;                // number of pixels on the canvas
+// var pixelSize = .35;            // vh
+var width = 35;                 // number of pixels on the canvas
+var height = 35;                // number of pixels on the canvas
+var pixelSize = 1.4;            // vh
 
 createCanvas(width, height);
 
@@ -26,16 +33,19 @@ function createCanvas(width, height){
     alphaHolder.appendChild(createElement({tagName: "input", id: "alphaSlider", type: "range", min: 0, max: .99, step: .01, value: .99, events:[{type: "change", fn: alphaChange},{type: "input", fn:alphaChange}]}));
     scaleHolder.appendChild(createElement({tagName: "span",  id: "scaleText", innerText: "Output Scaling"}));
     alphaHolder.appendChild(createElement({tagName: "span",  id: "alphaText", innerText: "Background Alpha"}));
-    for ( let h = 0; h < height; h++ ){
-        let rowDiv = createElement({tagName: "div", id: "row"+h, classes: ["row"]});
-        for ( let w = 0; w < width; w++ ){
-            let pixelDiv = createElement({tagName: "div", id: w+","+h, events: [{type: "click", fn: paintPixel}, {type: "mouseover", fn: mouseOver}], classes: ["pixel", "outlined", "background"]});
-            // let pixelDiv = createElement({tagName: "div", id: `${w},${h}`, events: [{type: "click", fn: paintPixel}, {type: "mouseover", fn: mouseOver}], classes: ["pixel", "outlined", "background"]});
-            pixelDiv.style.background = backgroundColor;       
-            rowDiv.appendChild(pixelDiv);
-        }        
-        paintArea.appendChild(rowDiv);
-    }
+    // for ( let h = 0; h < height; h++ ){
+    //     let rowDiv = createElement({tagName: "div", id: "row"+h, classes: ["row"]});
+    //     for ( let w = 0; w < width; w++ ){
+    //         let pixelDiv = createElement({tagName: "div", id: w+","+h,  events: [{type: "click", fn: paintPixel}, {type: "mouseover", fn: mouseOver}], classes: ["pixel", "outlined", "background"]});
+    //         // let pixelDiv = createElement({tagName: "div", id: `${w},${h}`, events: [{type: "click", fn: paintPixel}, {type: "mouseover", fn: mouseOver}], classes: ["pixel", "outlined", "background"]});
+    //         pixelDiv.style.background = backgroundColor;    
+    //         pixelDiv.style.width = pixelSize+'vw';
+    //         pixelDiv.style.height = pixelSize+'vw',   
+    //         rowDiv.appendChild(pixelDiv);
+    //     }        
+    //     paintArea.appendChild(rowDiv);
+    // }
+
     sideBar.appendChild(createElement({tagName: "div",    id: "headerText", innerText: "Sprite Creator"}));
     canvasHolder.appendChild(createElement({tagName: "canvas", id: "myCanvas", width: scale*width, height: scale*height}));
     sideBar.appendChild(alphaHolder);
@@ -46,13 +56,41 @@ function createCanvas(width, height){
     sideBar.appendChild(createElement({tagName: "input", type: "file", name: "fileChooser", id: "fileChooser", accept: "image/png", events: [{type: "change", fn: handleFileSelect}], classes: ["button"]}));
 
     main.appendChild(paintArea);
+
     main.appendChild(sideBar);
     document.getElementsByTagName("body")[0].appendChild(main);
     // document.getElementByTagName("body").appendChild(main);
     document.getElementById("fileChooserLabel").setAttribute("for","fileChooser");
+    
+    
+    createPixels();
     alphaChange();
     updateSprite();
     createPalette();
+    setHeader();
+}
+
+function setHeader(){
+    document.getElementById("headerText").innerText = `Sprite Creator\n(${width}X${height})`;
+}
+
+function createPixels(){
+
+    let paintArea = document.getElementById("paintArea");
+    paintArea.childNodes.forEach( c => {paintArea.removeChild(c)});
+
+    for ( let h = 0; h < height; h++ ){
+        let rowDiv = createElement({tagName: "div", id: "row"+h, classes: ["row"]});
+        for ( let w = 0; w < width; w++ ){
+            let pixelDiv = createElement({tagName: "div", id: w+","+h,  events: [{type: "click", fn: paintPixel}, {type: "mouseover", fn: mouseOver}], classes: ["pixel", "outlined", "background"]});
+            // let pixelDiv = createElement({tagName: "div", id: `${w},${h}`, events: [{type: "click", fn: paintPixel}, {type: "mouseover", fn: mouseOver}], classes: ["pixel", "outlined", "background"]});
+            pixelDiv.style.background = backgroundColor;    
+            pixelDiv.style.width = pixelSize+'vw';
+            pixelDiv.style.height = pixelSize+'vw',   
+            rowDiv.appendChild(pixelDiv);
+        }        
+        document.getElementById("paintArea").appendChild(rowDiv);
+    }
 }
 
 function createPalette(){
