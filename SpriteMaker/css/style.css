@@ -1,7 +1,9 @@
 .pixel {
-    background-color: white;
-    width: .7vw;
-    height: .7vw;
+    background-color: rgba(255,255,255,1);
+    width: .75vw;
+    height: .75vw;
+    /* height: 6px; */
+    /* width: 6px; */
 } 
 
 .outlined {
@@ -11,22 +13,25 @@
 
 .row {
     display:flex;
-    justify-content: center;
 }
+
 
 body {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    font: 400 11px system-ui;
+    margin: 0px;
 }
 
-#header {
+#sideBar {
     display:flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 0; 
 }
 
 #myCanvas {
-    margin: 1vw;
+    margin: 0;
     border: 1px solid black;
 }
 
@@ -34,26 +39,27 @@ body {
     padding: 5px 15px 5px 15px;
     display: block;
     font-size: 30px;
-    background: linear-gradient(lightskyblue, gray);
+    background-color: lightskyblue;
     border-radius: 20px;
     border: 2px solid white;
     box-shadow: 3px 3px 10px rgb(70,70,70);
+    margin-bottom: .5vw;
 }
 
 #paintArea {
     border: 1vw solid;
     border-image: radial-gradient(black 10%, white) 20;
     box-shadow: 3px 3px 10px rgb(45, 91, 122);
-    margin-right: 1vw;
+    margin-right: .5vw;
 }
 
 #main {
     display:flex;
-    align-items: center;
-    padding: 1vw;
-    margin: auto;
-    background: linear-gradient(gray, lightskyblue);
-    border-radius: 20px;
+    align-items: flex-start;
+    padding: .5vw;
+    /* margin: auto; */
+    background: linear-gradient(gray, lightskyblue, gray);
+    /* border-radius: 20px; */
     border: 1px solid black;
 }
 
@@ -61,7 +67,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 16.8vw;
-    padding: .5vw;
+    padding: .3vw;
     border: .3vw solid black;
     box-shadow: 3px 3px 10px rgb(45, 91, 122), 3px 3px 10px rgb(45, 91, 122) inset;
 }
@@ -74,6 +80,24 @@ body {
     margin: .2vw;
     box-shadow: 3px 3px 10px rgb(45, 91, 122);
     padding: 2px;
+}
+
+#scaleHolder, #alphaHolder{
+    display: flex;
+    /* justify-content: flex-start !important;
+    align-content: flex-start !important;
+    align-items: flex-start !important; */
+    align-self: flex-start;
+    font: 400 11px system-ui;
+    /* margin: .5vw; */
+}
+#scaleSlider, #alphaSlider {
+    align-self: flex-start;
+    margin: .3vw;
+}
+
+#alphaText, #scaleText {
+    margin: .3vw;
 }
 
 #paletteHolder {
@@ -117,7 +141,7 @@ body {
 #bgButton {
     background: gray;
     box-shadow: 3px 3px 10px rgb(45, 91, 122);
-    margin: .5vw 0 .5vw 0;
+    margin: .3vw 0 0 0;
     padding: .3vw;
 }
 
@@ -129,8 +153,13 @@ body {
     background: gray;
     box-shadow: 3px 3px 10px rgb(45, 91, 122);
     flex: 1 1 0;
-    margin: .5vw 0 .5vw 0;
+    margin: .5vw 0 0 0;
     padding: .3vw;
+    cursor: pointer;
+}
+
+input {
+    cursor: pointer;
 }
 
 .button:hover {
@@ -138,11 +167,12 @@ body {
 }
 
 #BrushButton1, #unDoButton {
-    margin: .5vw .5vw .5vw .5vw;
+    margin: .5vw .5vw 0 .5vw;
 }
 
 .painted {
     outline: none;
+
 }
 
 .selected {
@@ -153,4 +183,10 @@ body {
 
 .eraseBorder {
     border: .3vw dotted lightgray !important;
+}
+
+#fileChooser{
+    visibility: hidden;
+    /* z-index: -5; */
+    height: 2px;
 }
